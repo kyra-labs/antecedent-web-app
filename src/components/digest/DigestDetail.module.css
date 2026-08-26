@@ -1,0 +1,9 @@
+/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
+.detail {
+  display: grid;
+  gap: var(--space-4xl);
+}
+
+@media (max-width: 39.99rem) {
+  .detail { gap: var(--space-3xl); }
+}

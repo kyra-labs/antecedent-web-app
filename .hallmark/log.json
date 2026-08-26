@@ -1,6 +1,13 @@
 [
   {
     "date": "2026-08-26",
+    "macrostructure": "Long Document",
+    "theme": "Almanac",
+    "enrichment": "none",
+    "brief": "Digest-first daily technology reading flow"
+  },
+  {
+    "date": "2026-08-26",
     "macrostructure": "Index-First",
     "theme": "Almanac",
     "enrichment": "none",

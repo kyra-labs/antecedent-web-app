@@ -23,13 +23,10 @@ export function Header() {
 
         <nav className={styles.nav} aria-label="Primary navigation">
           <a href="/" className={styles.navLink} aria-current="page">
-            Today
+            Home
           </a>
           <a href="/archive" className={styles.navLink}>
             Archive
-          </a>
-          <a href="/entity/openai" className={styles.navLink}>
-            Entities
           </a>
         </nav>
       </div>
