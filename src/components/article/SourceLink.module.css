@@ -1,0 +1,15 @@
+.link {
+  display: inline-flex;
+  min-height: var(--control-height);
+  width: fit-content;
+  align-items: center;
+  gap: var(--space-xs);
+  border-block-end: var(--rule-strong) solid var(--color-accent);
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .link:hover { transform: translateX(var(--space-2xs)); } }
+.link:active { transform: translateX(0); }

@@ -1,0 +1,23 @@
+.field { display: grid; gap: var(--space-2xs); }
+.label { color: var(--color-ink-2); font-size: var(--text-sm); font-weight: 700; }
+.inputWrap { position: relative; display: block; }
+.icon { position: absolute; inset-block-start: 50%; inset-inline-start: var(--space-md); color: var(--color-muted); font-size: var(--text-md); transform: translateY(-50%); pointer-events: none; }
+.input {
+  width: 100%;
+  min-height: var(--control-height);
+  padding-inline: var(--space-xl) var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule-strong);
+  border-radius: var(--radius-sm);
+  outline: var(--rule-strong) solid transparent;
+  outline-offset: var(--space-3xs);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+.input::placeholder { color: var(--color-muted); opacity: 1; }
+.input:focus-visible { outline-color: var(--color-focus); }
+.input:disabled { cursor: not-allowed; opacity: 0.55; }
+.input[aria-invalid="true"] { border-color: var(--color-danger); }
+.input[data-state="success"] { border-color: var(--color-success); }
+.helper { min-height: 1lh; color: var(--color-muted); font-size: var(--text-xs); }
+@media (hover: hover) and (pointer: fine) { .input:hover { background: var(--color-paper-2); } }

@@ -1,0 +1,4 @@
+.header { display: flex; gap: var(--space-lg); align-items: center; padding-block-end: var(--space-xl); border-block-end: var(--rule-strong) solid var(--color-rule-strong); }
+.avatar { display: grid; width: clamp(4rem, 12vw, 6rem); aspect-ratio: 1; flex: 0 0 auto; place-items: center; border: var(--rule-hair) solid var(--color-accent); border-radius: var(--radius-round); background: var(--color-accent-soft); color: var(--color-accent); font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; animation: page-reveal var(--dur-long) var(--ease-out) forwards; }
+.header > div { display: grid; gap: var(--space-xs); }
+@media (prefers-reduced-motion: reduce) { .avatar { animation: none; } }

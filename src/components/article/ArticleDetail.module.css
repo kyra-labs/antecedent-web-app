@@ -1,0 +1,8 @@
+.article { display: grid; gap: var(--space-2xl); }
+.header { display: grid; gap: var(--space-md); max-width: 62rem; }
+.header h1 { max-width: 22ch; }
+.backLink { width: fit-content; min-height: var(--control-height); display: inline-flex; align-items: center; color: var(--color-accent); font-size: var(--text-sm); font-weight: 700; white-space: nowrap; }
+.byline { color: var(--color-muted); font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.body { display: grid; gap: var(--space-lg); max-width: var(--copy-max); color: var(--color-ink-2); font-family: var(--font-display); font-size: clamp(var(--text-base), 2vw, var(--text-md)); }
+.body p:first-child::first-letter { float: inline-start; margin-inline-end: var(--space-xs); color: var(--color-accent); font-family: var(--font-display); font-size: 3.6em; font-weight: 700; line-height: 0.82; }
+.entities { display: flex; flex-wrap: wrap; gap: var(--space-sm); }

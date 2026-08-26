@@ -1,0 +1,17 @@
+.state {
+  display: grid;
+  max-width: 42rem;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-block: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  animation: page-reveal var(--dur-long) var(--ease-out) forwards;
+}
+
+.state > div { display: grid; gap: var(--space-xs); }
+.state h2 { font-size: var(--text-lg); }
+.state p { color: var(--color-muted); }
+.icon { color: var(--color-muted); font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1; }
+.link { min-height: var(--control-height); width: fit-content; display: inline-flex; align-items: center; color: var(--color-accent); font-weight: 700; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .state { animation: none; } }

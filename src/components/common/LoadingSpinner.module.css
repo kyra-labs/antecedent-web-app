@@ -1,0 +1,9 @@
+.state { display: grid; min-height: 10rem; place-items: center; }
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: var(--rule-strong) solid var(--color-rule);
+  border-block-start-color: var(--color-accent);
+  border-radius: var(--radius-round);
+  animation: spin var(--dur-spinner) linear infinite;
+}
