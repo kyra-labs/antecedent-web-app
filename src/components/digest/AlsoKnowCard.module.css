@@ -1,0 +1,73 @@
+/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
+.card {
+  display: block;
+  width: 100%;
+  padding: var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--space-xl) minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.rank {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.title {
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.score {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.arrow {
+  color: var(--color-accent);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
+.detail {
+  display: none;
+  max-width: 62ch;
+  padding-block-start: var(--space-md);
+  padding-inline-start: calc(var(--space-xl) + var(--space-sm));
+  color: var(--color-ink-2);
+}
+
+.card.expanded .detail { display: block; }
+.card.expanded .arrow { transform: rotate(90deg); }
+
+.card:hover { background: var(--color-paper-3); transform: translateY(-1px); }
+.card:active { transform: translateY(1px); }
+.card:disabled { cursor: not-allowed; }
+
+@media (max-width: 39.99rem) {
+  .row { grid-template-columns: var(--space-xl) minmax(0, 1fr) auto; }
+  .row > :nth-child(3),
+  .score { display: none; }
+  .detail { padding-inline-start: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card.expanded .arrow { transform: none; }
+}

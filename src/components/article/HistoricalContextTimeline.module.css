@@ -1,0 +1,113 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · macrostructure: dated single-rail timeline · genre: editorial
+ * tone: technical-soft · theme: Almanac · anchor: blue
+ * motion: thread draw · reduced motion: static · contrast: pass (40–41)
+ * slop: pass (42–49) · mobile: pass (34, 49, 50–57)
+ */
+.timeline {
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.heading {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.heading p {
+  color: var(--color-muted);
+}
+
+.thread {
+  position: relative;
+  display: grid;
+  gap: var(--space-xl);
+  padding: 0;
+  list-style: none;
+}
+
+.thread::before {
+  content: "";
+  position: absolute;
+  inset-block: var(--space-sm) 0;
+  inset-inline-start: calc(var(--space-2xl) + var(--space-xs) - var(--rule-hair));
+  width: var(--rule-strong);
+  background: var(--color-rule-strong);
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: thread-draw var(--dur-long) var(--ease-out) var(--dur-micro) forwards;
+}
+
+.node {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-2xl) var(--space-md) minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+
+.node:last-child::after {
+  content: "";
+  position: absolute;
+  inset-block: var(--space-sm) 0;
+  inset-inline-start: calc(var(--space-2xl) + var(--space-xs) - var(--rule-hair));
+  width: var(--rule-strong);
+  background: var(--color-paper);
+  z-index: var(--z-base);
+}
+
+.node time {
+  padding-block-start: var(--space-3xs);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+}
+
+.marker {
+  position: relative;
+  z-index: var(--z-raised);
+  width: var(--space-sm);
+  height: var(--space-sm);
+  margin-block-start: var(--space-xs);
+  place-self: start center;
+  border: var(--rule-strong) solid var(--color-accent);
+  border-radius: var(--radius-round);
+  background: var(--color-paper);
+}
+
+.entry {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-xs);
+  padding-inline-start: var(--space-md);
+}
+
+.entry h3 {
+  font-size: var(--text-md);
+}
+
+.entry p {
+  color: var(--color-ink-2);
+}
+
+@media (min-width: 48rem) {
+  .heading {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr);
+    align-items: end;
+  }
+
+  .thread {
+    gap: var(--space-2xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thread::before {
+    animation: none;
+    transform: scaleY(1);
+  }
+}

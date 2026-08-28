@@ -1,0 +1,100 @@
+/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
+.timeline {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: var(--space-lg);
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.heading {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.heading h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.heading p {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.thread {
+  position: relative;
+  display: grid;
+  gap: var(--space-lg);
+  padding: 0;
+  list-style: none;
+}
+
+.thread::before {
+  content: "";
+  position: absolute;
+  inset-block: var(--space-sm) 0;
+  inset-inline-start: calc(var(--timeline-date-width) + (var(--space-md) / 2) - var(--rule-hair));
+  width: var(--rule-strong);
+  background: var(--color-rule-strong);
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: threadDraw var(--dur-long) var(--ease-out) var(--dur-micro) forwards;
+}
+
+.node {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--timeline-date-width) var(--space-md) minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+
+.node:last-child::after {
+  content: "";
+  position: absolute;
+  inset-block: var(--space-sm) 0;
+  inset-inline-start: calc(var(--timeline-date-width) + (var(--space-md) / 2) - var(--rule-hair));
+  width: var(--rule-strong);
+  background: var(--color-paper);
+  z-index: var(--z-base);
+}
+
+.node time {
+  padding-block-start: var(--space-3xs);
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.marker {
+  position: relative;
+  z-index: var(--z-raised);
+  width: var(--space-sm);
+  height: var(--space-sm);
+  margin-block-start: var(--space-xs);
+  place-self: start center;
+  border: var(--rule-strong) solid var(--color-accent);
+  border-radius: var(--radius-round);
+  background: var(--color-paper);
+}
+
+.node p {
+  min-width: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thread::before { animation: none; transform: scaleY(1); }
+}
+
+@keyframes threadDraw {
+  to { transform: scaleY(1); }
+}

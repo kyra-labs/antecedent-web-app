@@ -1,0 +1,37 @@
+/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
+.section {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.heading {
+  display: grid;
+  gap: var(--space-xs);
+  padding-block-end: var(--space-md);
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+}
+
+.kicker {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.heading h2 {
+  font-size: var(--text-2xl);
+}
+
+.heading div {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.heading div p {
+  color: var(--color-muted);
+}
+
+.cards {
+  display: grid;
+  gap: var(--space-2xl);
+}

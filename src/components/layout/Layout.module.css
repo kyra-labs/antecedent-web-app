@@ -1,0 +1,14 @@
+.layout {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+}
+
+.main {
+  width: 100%;
+  padding-block: var(--space-xl) var(--space-3xl);
+}
+
+@media (min-width: 40rem) {
+  .main { padding-block: var(--space-2xl) var(--space-4xl); }
+}

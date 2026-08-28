@@ -1,0 +1,27 @@
+/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.chip {
+  min-height: var(--control-height);
+  padding-inline: var(--space-sm);
+  border: var(--rule-hair) solid var(--color-rule-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+.chip:hover { background: var(--color-paper-2); color: var(--color-ink); }
+.chip:active { transform: translateY(1px); }
+.chip.active { background: var(--color-accent); color: var(--color-accent-ink); }
+.chip:disabled { cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chip { transition: none; }
+}

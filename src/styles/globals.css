@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Newsreader:opsz,wght@6..72,400;6..72,700&display=swap");
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 0;
+  overflow-x: clip;
+}
+
+html {
+  color-scheme: light dark;
+  background: var(--color-paper);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-copy);
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:active {
+  color: var(--color-accent);
+}
+
+button {
+  border: 0;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button[data-state="loading"],
+[role="button"][data-state="loading"] {
+  cursor: progress;
+}
+
+button[data-state="error"],
+[role="button"][data-state="error"] {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+button[data-state="success"],
+[role="button"][data-state="success"] {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  min-width: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: var(--text-display);
+}
+h2 {
+  font-size: var(--text-xl);
+}
+h3 {
+  font-size: var(--text-md);
+}
+p {
+  max-width: var(--copy-max);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: var(--rule-hair);
+  text-underline-offset: var(--space-2xs);
+}
+
+:focus-visible {
+  outline: var(--rule-strong) solid var(--color-focus);
+  outline-offset: var(--space-2xs);
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+.container {
+  width: min(100% - (var(--space-md) * 2), var(--content-max));
+  margin-inline: auto;
+}
+
+.pageReveal {
+  opacity: 0;
+  transform: translateY(var(--space-xs));
+  animation: page-reveal var(--dur-long) var(--ease-out) forwards;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes page-reveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes thread-draw {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes bar-rise {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-thickness: var(--rule-strong);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: var(--dur-reduced) !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: var(--dur-reduced) !important;
+  }
+
+  .pageReveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  a,
+  button {
+    transform: none !important;
+  }
+}
+
+@media (min-width: 40rem) {
+  .container {
+    width: min(100% - (var(--space-xl) * 2), var(--content-max));
+  }
+}
+
+/* 1. Ensure the transition layers don't block user pointer events */
+::view-transition-image-group(root) {
+  isolation: isolate;
+}
+
+/* 2. Define the keyframes for a circular clip-path wipe */
+@keyframes reveal-dark {
+  from {
+    clip-path: circle(0% at 100% 0%);
+  }
+  to {
+    clip-path: circle(150% at 100% 0%);
+  }
+}
+
+@keyframes reveal-light {
+  from {
+    clip-path: circle(0% at 100% 0%);
+  }
+  to {
+    clip-path: circle(150% at 100% 0%);
+  }
+}
+
+/* 3. Apply the custom animation when switching themes */
+[data-theme="dark"]::view-transition-new(root) {
+  animation: 400ms ease-out reveal-dark;
+  mix-blend-mode: normal;
+}
+
+[data-theme="light"]::view-transition-new(root) {
+  animation: 400ms ease-out reveal-light;
+  mix-blend-mode: normal;
+}

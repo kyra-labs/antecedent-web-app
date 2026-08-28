@@ -1,0 +1,15 @@
+.tag {
+  display: inline-flex;
+  min-height: var(--control-height);
+  align-items: center;
+  padding-inline: var(--space-sm);
+  border-block-end: var(--rule-hair) solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .tag:hover { background: var(--color-accent-soft); } }
+.tag:active { transform: translateY(1px); }

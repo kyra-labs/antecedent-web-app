@@ -1,0 +1,6 @@
+.entityPage { display: grid; gap: var(--space-2xl); }
+.related { display: grid; }
+.related > h2 { margin-block-end: var(--space-lg); }
+.notFound { display: grid; gap: var(--space-lg); }
+.errorCode { color: var(--color-accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.homeLink { width: fit-content; min-height: var(--control-height); display: inline-flex; align-items: center; color: var(--color-accent); font-weight: 700; white-space: nowrap; }
