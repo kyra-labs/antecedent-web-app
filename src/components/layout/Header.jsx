@@ -1,5 +1,6 @@
 import styles from "./Header.module.css";
 import { ThemeToggle } from "./ThemeToggle";
+import { NavLink } from "react-router";
 
 export function Header() {
   return (
@@ -22,12 +23,12 @@ export function Header() {
         </div>
 
         <nav className={styles.nav} aria-label="Primary navigation">
-          <a href="/" className={styles.navLink} aria-current="page">
+          <NavLink to="/" className={styles.navLink} aria-current="page">
             Home
-          </a>
-          <a href="/archive" className={styles.navLink}>
+          </NavLink>
+          <NavLink to="/archive" className={styles.navLink}>
             Archive
-          </a>
+          </NavLink>
         </nav>
       </div>
     </header>

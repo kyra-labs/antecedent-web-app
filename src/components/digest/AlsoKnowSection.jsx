@@ -12,9 +12,9 @@ export function AlsoKnowSection({ stories }) {
         </div>
       </header>
       <div className={styles.cards}>
-        <AlsoKnowCard {...stories[0]} />
-        <AlsoKnowCard {...stories[1]} />
-        <AlsoKnowCard {...stories[2]} />
+        {stories.map((story) => (
+          <AlsoKnowCard {...story} />
+        ))}
       </div>
     </section>
   );

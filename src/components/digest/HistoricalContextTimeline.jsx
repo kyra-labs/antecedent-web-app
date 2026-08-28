@@ -1,14 +1,6 @@
 import styles from "./HistoricalContextTimeline.module.css";
 
-export function HistoricalContextTimeline({
-  headingId,
-  firstDate,
-  firstEvent,
-  secondDate,
-  secondEvent,
-  thirdDate,
-  thirdEvent,
-}) {
+export function HistoricalContextTimeline({ headingId, events }) {
   return (
     <section className={styles.timeline} aria-labelledby={headingId}>
       <header className={styles.heading}>
@@ -16,21 +8,15 @@ export function HistoricalContextTimeline({
         <p>Earlier events that make this update legible.</p>
       </header>
       <ol className={styles.thread}>
-        <li className={styles.node}>
-          <time dateTime={firstDate}>{firstDate}</time>
-          <span className={styles.marker} aria-hidden="true" />
-          <p>{firstEvent}</p>
-        </li>
-        <li className={styles.node}>
-          <time dateTime={secondDate}>{secondDate}</time>
-          <span className={styles.marker} aria-hidden="true" />
-          <p>{secondEvent}</p>
-        </li>
-        <li className={styles.node}>
-          <time dateTime={thirdDate}>{thirdDate}</time>
-          <span className={styles.marker} aria-hidden="true" />
-          <p>{thirdEvent}</p>
-        </li>
+        {events.map((event, index) => {
+          return (
+            <li key={`${headingId}_${index}`} className={styles.node}>
+              <time dateTime={event?.date}>{event?.date}</time>
+              <span className={styles.marker} aria-hidden="true" />
+              <p>{event?.text}</p>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );

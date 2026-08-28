@@ -13,8 +13,15 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevState) => {
-      return prevState == THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+    // Check if the browser supports View Transitions
+    if (!document.startViewTransition) {
+      setTheme((prev) => (prev === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
+      return;
+    }
+
+    // Smoothly animate the React state change!
+    document.startViewTransition(() => {
+      setTheme((prev) => (prev === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
     });
   };
 
