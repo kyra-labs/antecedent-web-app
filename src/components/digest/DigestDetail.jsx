@@ -25,8 +25,12 @@ export function DigestDetail({ digest }) {
           year: "numeric",
         })}
       />
-      <MustKnowSection stories={mustKnownStories} />
-      <AlsoKnowSection stories={alsoKnownStories} />
+      {mustKnownStories.length > 0 && (
+        <MustKnowSection stories={mustKnownStories} />
+      )}
+      {alsoKnownStories.length > 0 && (
+        <AlsoKnowSection stories={alsoKnownStories} />
+      )}
     </article>
   );
 }

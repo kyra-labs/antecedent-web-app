@@ -12,8 +12,8 @@ export function MustKnowSection({ stories }) {
         </div>
       </header>
       <div className={styles.cards}>
-        {stories.map((story) => (
-          <MustKnowCard {...story} />
+        {stories.map((story, index) => (
+          <MustKnowCard key={index} {...story} />
         ))}
       </div>
     </section>

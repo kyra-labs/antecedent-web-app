@@ -2,6 +2,8 @@ import styles from "./Header.module.css";
 import { ThemeToggle } from "./ThemeToggle";
 import { NavLink } from "react-router";
 
+import logo from "../../assets/logo_long_100px.svg";
+
 export function Header() {
   return (
     <header className={styles.header}>
@@ -12,13 +14,15 @@ export function Header() {
         </div>
 
         <div className={styles.mastheadRow}>
-          <a
+          <img className={styles.wordmark} src={logo} />
+
+          {/* <a
             href="/"
             className={styles.wordmark}
             aria-label="Tech Context Digest home"
           >
             Antecedent
-          </a>
+          </a> */}
           <ThemeToggle />
         </div>
 
