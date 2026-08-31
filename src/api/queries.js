@@ -40,7 +40,7 @@ export const getLatestDigest = async () => {
 };
 
 export const getDigestById = async (id) => {
-  const { data: latest, error } = await supabase
+  const { data, error } = await supabase
     .from("digests")
     .select(
       `
@@ -75,5 +75,23 @@ export const getDigestById = async (id) => {
 
   if (error) throw error;
 
-  return latest;
+  return data;
+};
+
+export const getDigestArchive = async () => {
+  const { data, error } = await supabase
+    .from("digests")
+    .select(
+      `
+        id, 
+        digest_date, 
+        title,
+        reading_minutes `,
+    )
+    .eq("status", "ready")
+    .order("digest_date", { ascending: false });
+
+  if (error) throw error;
+
+  return data;
 };

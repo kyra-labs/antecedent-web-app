@@ -7,7 +7,8 @@
   display: grid;
   gap: var(--space-xs);
   padding-block-end: var(--space-xs);
-  border-bottom: calc(var(--rule-strong) + var(--rule-hair)) double var(--color-rule-strong);
+  border-bottom: calc(var(--rule-strong) + var(--rule-hair)) double
+    var(--color-rule-strong);
 }
 
 .issueLine {
@@ -29,14 +30,16 @@
 }
 
 .wordmark {
-  color: var(--color-ink);
+  /* color: var(--color-ink);
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 7vw, 3.8rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1;
   overflow-wrap: anywhere;
-  text-decoration: none;
+  text-decoration: none; */
+
+  width: 500px;
 }
 
 .nav {
@@ -47,7 +50,9 @@
   scrollbar-width: none;
 }
 
-.nav::-webkit-scrollbar { display: none; }
+.nav::-webkit-scrollbar {
+  display: none;
+}
 
 .navLink {
   min-height: var(--control-height);
@@ -58,7 +63,9 @@
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  transition: color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+  transition:
+    color var(--dur-short) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
 }
 
 .navLink[aria-current="page"] {
@@ -68,14 +75,28 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .navLink:hover { color: var(--color-ink); }
+  .navLink:hover {
+    color: var(--color-ink);
+  }
 }
 
-.navLink:active { transform: translateY(1px); }
+.navLink:active {
+  transform: translateY(1px);
+}
 
 @media (min-width: 40rem) {
-  .mastheadRow { grid-template-columns: 1fr auto 1fr; }
-  .wordmark { grid-column: 2; text-align: center; }
-  .mastheadRow > :last-child { grid-column: 3; justify-self: end; }
-  .nav { justify-content: center; }
+  .mastheadRow {
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .wordmark {
+    grid-column: 2;
+    text-align: center;
+  }
+  .mastheadRow > :last-child {
+    grid-column: 3;
+    justify-self: end;
+  }
+  .nav {
+    justify-content: center;
+  }
 }
