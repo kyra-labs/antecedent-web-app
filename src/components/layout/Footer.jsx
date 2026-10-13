@@ -2,8 +2,9 @@ import styles from "./Footer.module.css";
 
 export function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={`container ${styles.inner}`}>
+    <footer className={`container ${styles.footer}`}>
+      <hr className="m3e-divider" />
+      <div className={styles.inner}>
         <p className={styles.tagline}>
           Today&apos;s tech news, with the history behind it.
         </p>
@@ -19,7 +20,6 @@ export function Footer() {
             Kyra Labs
           </a>
         </nav>
-        {/* <p className={styles.credit}>Open source - 2026</p> */}
       </div>
     </footer>
   );

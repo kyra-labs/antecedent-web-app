@@ -1,5 +1,6 @@
 import styles from "./Badge.module.css";
 
+/** A static label (category, status). Not a chip: M3 chips are actions; this isn't. */
 export function Badge({ children = "AI", tone = "accent" }) {
   return <span className={`${styles.badge} ${styles[tone]}`}>{children}</span>;
 }

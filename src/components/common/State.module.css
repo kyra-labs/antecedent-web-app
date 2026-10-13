@@ -1,0 +1,49 @@
+/* Shared by ErrorState and EmptyState: a filled card with an icon, message and one action. */
+.state {
+  display: grid;
+  gap: var(--m3e-sys-space-200);
+  justify-items: start;
+  margin-block: var(--m3e-sys-space-300);
+  padding: var(--m3e-sys-space-300);
+}
+
+.icon {
+  --m3e-comp-icon-size: var(--m3e-sys-space-500);
+
+  display: grid;
+  inline-size: var(--m3e-sys-space-700);
+  block-size: var(--m3e-sys-space-700);
+  place-items: center;
+  border-radius: var(--m3e-sys-shape-corner-full);
+}
+
+.error {
+  background-color: var(--m3e-sys-color-error-container);
+  color: var(--m3e-sys-color-on-error-container);
+}
+
+.empty {
+  background-color: var(--m3e-sys-color-secondary-container);
+  color: var(--m3e-sys-color-on-secondary-container);
+}
+
+.state h2 {
+  font-family: var(--m3e-sys-typescale-headline-small-emphasized-font);
+  font-size: var(--m3e-sys-typescale-headline-small-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-headline-small-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-headline-small-emphasized-line-height);
+  letter-spacing: var(--m3e-sys-typescale-headline-small-emphasized-tracking);
+}
+
+.state p {
+  margin-block-start: var(--m3e-sys-space-50);
+  color: var(--m3e-sys-color-on-surface-variant);
+}
+
+@media (width >= 600px) {
+  .state {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    padding: var(--m3e-sys-space-400);
+  }
+}

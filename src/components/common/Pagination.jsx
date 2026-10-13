@@ -1,60 +1,49 @@
 import styles from "./Pagination.module.css";
+import { Button } from "@kyralabs/m3e-react";
 
+/**
+ * Prev / page numbers / Next. Prev and Next are real buttons, disabled at the ends (before, they
+ * were links without href that could step to page 0 or past the last page).
+ */
 export function Pagination({ currentPage, totalPages, handlePageChange }) {
-  console.log(currentPage);
-  console.log(totalPages);
+  if (totalPages < 1) return null;
 
-  const pageItems = [];
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageItems.push(
-      <a
-        href="#"
-        key={i}
-        onClick={(event) => {
-          event.preventDefault();
-
-          handlePageChange(i);
-        }}
-        className={`${styles.page} ${currentPage == i ? styles.current : ""}`}
-        aria-current={`${currentPage == i ? "page" : ""}`}
-      >
-        {i}
-      </a>,
-    );
-  }
-
-  return pageItems.length > 0 ? (
+  return (
     <nav className={styles.pagination} aria-label="Archive pages">
-      <a
-        className={styles.control}
-        onClick={(event) => {
-          event.preventDefault();
-
-          handlePageChange(currentPage - 1);
-        }}
+      <Button
+        variant="text"
+        size="s"
         aria-label="Previous page"
-        aria-disabled={currentPage > 1 ? "false" : "true"}
+        isDisabled={currentPage <= 1}
+        onPress={() => handlePageChange(currentPage - 1)}
       >
         Prev
-      </a>
+      </Button>
 
-      {pageItems.map((page) => page)}
+      {pages.map((page) => (
+        <Button
+          key={page}
+          variant={currentPage === page ? "filled" : "text"}
+          size="s"
+          shape="square"
+          aria-current={currentPage === page ? "page" : undefined}
+          onPress={() => handlePageChange(page)}
+        >
+          {page}
+        </Button>
+      ))}
 
-      <a
-        className={styles.control}
-        onClick={(event) => {
-          event.preventDefault();
-
-          handlePageChange(currentPage + 1);
-        }}
+      <Button
+        variant="text"
+        size="s"
         aria-label="Next page"
-        aria-disabled={currentPage < totalPages ? "false" : "true"}
+        isDisabled={currentPage >= totalPages}
+        onPress={() => handlePageChange(currentPage + 1)}
       >
         Next
-      </a>
+      </Button>
     </nav>
-  ) : (
-    <></>
   );
 }

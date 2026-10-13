@@ -1,4 +1,5 @@
 import styles from "./DigestHeader.module.css";
+import { Icon } from "@kyralabs/m3e-react";
 
 export function DigestHeader({ title, readingTime, introduction, edition }) {
   return (
@@ -10,7 +11,10 @@ export function DigestHeader({ title, readingTime, introduction, edition }) {
       </div>
       <div className={styles.titleRow}>
         <h1>{title}</h1>
-        <span className={styles.readingTime}>{readingTime}</span>
+        <span className={styles.readingTime}>
+          <Icon name="schedule" />
+          {readingTime}
+        </span>
       </div>
       <p className={styles.introduction}>{introduction}</p>
     </header>

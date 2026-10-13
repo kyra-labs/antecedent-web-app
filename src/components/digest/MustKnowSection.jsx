@@ -1,4 +1,4 @@
-import styles from "./MustKnowSection.module.css";
+import styles from "./Section.module.css";
 import { MustKnowCard } from "./MustKnowCard";
 
 export function MustKnowSection({ stories }) {
@@ -12,8 +12,8 @@ export function MustKnowSection({ stories }) {
         </div>
       </header>
       <div className={styles.cards}>
-        {stories.map((story, index) => (
-          <MustKnowCard key={index} {...story} />
+        {stories.map((story) => (
+          <MustKnowCard key={story.rank} {...story} />
         ))}
       </div>
     </section>

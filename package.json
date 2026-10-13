@@ -4,20 +4,31 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "gen": "pnpm gen:theme && pnpm gen:icons",
+    "gen:theme": "node scripts/gen-theme.mjs",
+    "gen:icons": "m3e-icons subset --names-file src/icons.txt --wght 400 --grad 0 --opsz 24 --out src/styles/generated/app-icons.woff2 --css src/styles/generated/icons.css --family \"Antecedent Icons\"",
+    "dev": "pnpm gen && vite",
+    "build": "pnpm gen && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "preview": "vite preview",
+    "lighthouse": "lhci autorun && lhci autorun --collect.settings.preset=desktop --upload.outputDir=./.lighthouseci/reports-desktop"
   },
   "dependencies": {
+    "@kyralabs/m3e-css": "^1.0.0",
+    "@kyralabs/m3e-react": "^1.0.0",
+    "@kyralabs/m3e-tokens": "^1.0.0",
     "@supabase/supabase-js": "^2.112.4",
     "react": "^19.2.8",
+    "react-aria": "3.53.1",
     "react-dom": "^19.2.8",
     "react-router": "^8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@eslint/js": "^10.0.1",
+    "@kyralabs/m3e-icons": "^1.0.0",
+    "@lhci/cli": "0.15.1",
     "@rolldown/plugin-babel": "^0.2.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
@@ -27,6 +38,13 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.4",
     "globals": "^17.11.0",
+    "postcss-value-parser": "4.2.0",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard": "40.0.0",
     "vite": "^8.2.2"
+  },
+  "packageManager": "pnpm@12.11.2",
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

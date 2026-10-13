@@ -1,4 +1,4 @@
-import styles from "./AlsoKnowSection.module.css";
+import styles from "./Section.module.css";
 import { AlsoKnowCard } from "./AlsoKnowCard";
 
 export function AlsoKnowSection({ stories }) {
@@ -13,7 +13,7 @@ export function AlsoKnowSection({ stories }) {
       </header>
       <div className={styles.cards}>
         {stories.map((story) => (
-          <AlsoKnowCard {...story} />
+          <AlsoKnowCard key={story.rank} {...story} />
         ))}
       </div>
     </section>

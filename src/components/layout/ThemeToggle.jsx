@@ -1,25 +1,20 @@
-import styles from "./ThemeToggle.module.css";
+import { Icon, IconToggleButton } from "@kyralabs/m3e-react";
 import { THEME } from "../../constants/theme";
-
 import { useTheme } from "../../hooks/useTheme";
 
+/** M3 icon toggle button: pressed while the dark theme is on. */
 export function ThemeToggle() {
-  const [theme, setTheme] = useTheme();
+  const [theme, toggleTheme] = useTheme();
+  const isDark = theme === THEME.DARK;
 
   return (
-    <button
-      className={styles.toggle}
-      type="button"
-      aria-label="Switch color theme"
-      onClick={() => setTheme()}
+    <IconToggleButton
+      aria-label="Dark theme"
+      title={`Switch to ${isDark ? "Light Theme" : "Dark Theme"}`}
+      isSelected={isDark}
+      onChange={() => toggleTheme()}
     >
-      <span
-        className={styles.icon}
-        aria-hidden="true"
-        title={`Switch to ${theme == THEME.DARK ? "Light Theme" : "Dark Theme"}`}
-      >
-        ◐
-      </span>
-    </button>
+      <Icon name={isDark ? "dark_mode" : "light_mode"} />
+    </IconToggleButton>
   );
 }

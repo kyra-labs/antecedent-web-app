@@ -79,9 +79,10 @@ export function DigestList() {
   let content;
 
   if (isLoading) content = <BlockLoader />;
-  else if (error) content = <ErrorState onRetry={refetch} />;
-  else if (paginatedData.length === 0) content = <EmptyState />;
+  else if (error) content = <ErrorState bare onRetry={refetch} />;
   else
+    // The search and filters stay on screen when nothing matches (before, an empty result
+    // replaced them with the empty state, so a search or filter could not be undone).
     content = (
       <>
         <div className={styles.controls}>
@@ -95,28 +96,37 @@ export function DigestList() {
           />
         </div>
 
-        <div className={styles.list}>
-          {paginatedData.map((digest) => (
-            <DigestListItem
-              key={digest.id}
-              id={digest.id}
-              title={digest.title}
-              date={new Date(digest.digest_date).toLocaleDateString("en-us", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-              readingTime={`${digest.reading_minutes} min read`}
-            />
-          ))}
-        </div>
+        {paginatedData.length === 0 ? (
+          <EmptyState bare />
+        ) : (
+          <>
+            <ul className={styles.list}>
+              {paginatedData.map((digest) => (
+                <DigestListItem
+                  key={digest.id}
+                  id={digest.id}
+                  title={digest.title}
+                  date={new Date(digest.digest_date).toLocaleDateString(
+                    "en-us",
+                    {
+                      weekday: "long",
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    },
+                  )}
+                  readingTime={`${digest.reading_minutes} min read`}
+                />
+              ))}
+            </ul>
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(filteredData.length / itemsPerPage)}
-          handlePageChange={handlePageChange}
-        />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(filteredData.length / itemsPerPage)}
+              handlePageChange={handlePageChange}
+            />
+          </>
+        )}
       </>
     );
 

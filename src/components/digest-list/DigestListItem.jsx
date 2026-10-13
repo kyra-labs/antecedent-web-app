@@ -1,18 +1,17 @@
 import styles from "./DigestListItem.module.css";
-import { Link } from "react-router";
+import { Card, CardAction, Icon } from "@kyralabs/m3e-react";
 
+/** One past edition: an interactive card whose title link covers the whole card. */
 export function DigestListItem({ id, title, date, readingTime }) {
   return (
-    <Link className={styles.item} to={`${id}`} key={id}>
-      <span className={styles.index} aria-hidden="true">
-        ↳
-      </span>
-      <span className={styles.title}>{title}</span>
+    <Card as="li" variant="outlined" className={styles.item}>
+      <Icon name="subdirectory_arrow_right" className={styles.index} />
+      <h2 className={styles.title}>
+        <CardAction href={`/archive/${id}`}>{title}</CardAction>
+      </h2>
       <time className={styles.date}>{date}</time>
       <span className={styles.readingTime}>{readingTime}</span>
-      <span className={styles.arrow} aria-hidden="true">
-        ↗
-      </span>
-    </Link>
+      <Icon name="arrow_outward" className={styles.arrow} />
+    </Card>
   );
 }

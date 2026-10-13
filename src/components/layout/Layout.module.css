@@ -1,14 +1,25 @@
 .layout {
   display: grid;
-  min-height: 100dvh;
   grid-template-rows: auto 1fr auto;
+  min-block-size: 100dvh;
+
+  /* Room for the fixed navigation bar on compact windows. */
+  padding-block-end: calc(
+    var(--m3e-comp-navigation-bar-container-height) + env(safe-area-inset-bottom)
+  );
 }
 
 .main {
-  width: 100%;
-  padding-block: var(--space-xl) var(--space-3xl);
+  inline-size: 100%;
+  padding-block: var(--m3e-sys-space-500) var(--m3e-sys-space-800);
 }
 
-@media (min-width: 40rem) {
-  .main { padding-block: var(--space-2xl) var(--space-4xl); }
+@media (width >= 600px) {
+  .layout {
+    padding-block-end: 0;
+  }
+
+  .main {
+    padding-block: var(--m3e-sys-space-600) var(--m3e-sys-space-900);
+  }
 }
