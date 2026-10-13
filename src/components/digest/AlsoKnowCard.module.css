@@ -1,73 +1,93 @@
-/* Hallmark · macrostructure: Long Document · tone: technical-soft · anchor hue: archive-blue */
 .card {
-  display: block;
-  width: 100%;
-  padding: var(--space-md);
-  border: var(--rule-hair) solid var(--color-rule);
-  background: var(--color-paper-2);
-  color: var(--color-ink);
-  text-align: start;
-  cursor: pointer;
-  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+  overflow: clip;
 }
 
 .row {
   display: grid;
-  grid-template-columns: var(--space-xl) minmax(0, 1fr) auto auto auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--m3e-sys-space-100) var(--m3e-sys-space-200);
   align-items: center;
-  gap: var(--space-sm);
+  inline-size: 100%;
+  min-block-size: var(--m3e-comp-minimum-interactive-component-size);
+  padding: var(--m3e-sys-space-200) var(--m3e-sys-space-300);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  color: var(--m3e-sys-color-on-surface);
+  text-align: start;
+  cursor: pointer;
 }
 
 .rank {
-  color: var(--color-accent);
+  color: var(--m3e-sys-color-primary);
+  font-family: var(--m3e-sys-typescale-title-medium-emphasized-font);
+  font-size: var(--m3e-sys-typescale-title-medium-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-title-medium-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-title-medium-emphasized-line-height);
   font-variant-numeric: tabular-nums;
-  font-weight: 700;
 }
 
 .title {
-  min-width: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-md);
-  font-weight: 700;
-  overflow-wrap: anywhere;
+  font-family: var(--m3e-sys-typescale-title-medium-emphasized-font);
+  font-size: var(--m3e-sys-typescale-title-medium-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-title-medium-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-title-medium-emphasized-line-height);
+  letter-spacing: var(--m3e-sys-typescale-title-medium-emphasized-tracking);
+}
+
+/* Under the title on compact windows; inline from medium. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 2;
+  grid-row: 2;
+  gap: var(--m3e-sys-space-100) var(--m3e-sys-space-200);
+  align-items: center;
 }
 
 .score {
-  color: var(--color-muted);
-  font-size: var(--text-sm);
+  color: var(--m3e-sys-color-on-surface-variant);
+  font-family: var(--m3e-sys-typescale-label-large-font);
+  font-size: var(--m3e-sys-typescale-label-large-size);
+  font-weight: var(--m3e-sys-typescale-label-large-weight);
+  line-height: var(--m3e-sys-typescale-label-large-line-height);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
 .arrow {
-  color: var(--color-accent);
-  font-size: var(--text-lg);
-  line-height: 1;
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  color: var(--m3e-sys-color-on-surface-variant);
+  transition: rotate var(--m3e-sys-motion-spring-default-spatial-duration)
+    var(--m3e-sys-motion-spring-default-spatial-easing);
+}
+
+.row[aria-expanded='true'] .arrow {
+  rotate: 180deg;
 }
 
 .detail {
-  display: none;
-  max-width: 62ch;
-  padding-block-start: var(--space-md);
-  padding-inline-start: calc(var(--space-xl) + var(--space-sm));
-  color: var(--color-ink-2);
+  padding: 0 var(--m3e-sys-space-300) var(--m3e-sys-space-300);
+  color: var(--m3e-sys-color-on-surface-variant);
 }
 
-.card.expanded .detail { display: block; }
-.card.expanded .arrow { transform: rotate(90deg); }
+@media (width >= 840px) {
+  .row {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+  }
 
-.card:hover { background: var(--color-paper-3); transform: translateY(-1px); }
-.card:active { transform: translateY(1px); }
-.card:disabled { cursor: not-allowed; }
+  .meta {
+    grid-column: 3;
+    grid-row: 1;
+  }
 
-@media (max-width: 39.99rem) {
-  .row { grid-template-columns: var(--space-xl) minmax(0, 1fr) auto; }
-  .row > :nth-child(3),
-  .score { display: none; }
-  .detail { padding-inline-start: 0; }
-}
+  .arrow {
+    grid-column: 4;
+    grid-row: 1;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
-  .card.expanded .arrow { transform: none; }
+  .detail {
+    padding-inline-start: calc(var(--m3e-sys-space-300) + var(--m3e-sys-space-500));
+  }
 }

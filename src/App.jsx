@@ -1,5 +1,3 @@
-import "./App.css";
-
 import { Routes, Route } from "react-router";
 
 import { Layout } from "./components/layout/Layout";

@@ -25,7 +25,8 @@ export const useAsync = (asyncFn, deps = []) => {
           if (thisRequestId === requestId.current) setIsLoading(false);
         });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // The caller's dependency list is passed through on purpose (useAsync(fn, [id])).
+    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
     deps,
   );
 

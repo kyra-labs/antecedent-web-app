@@ -1,11 +1,11 @@
 import styles from "./MustKnowCard.module.css";
+import { Card } from "@kyralabs/m3e-react";
 import { Badge } from "../common/Badge";
 import { HistoricalContextTimeline } from "./HistoricalContextTimeline";
-// import { SourceLink } from "./SourceLink";
 
 export function MustKnowCard({ rank, events }) {
   return (
-    <article className={styles.card}>
+    <Card as="article" variant="outlined" className={styles.card}>
       <header className={styles.cardHeader}>
         <p className={styles.rank}>{String(rank).padStart(2, "0")}</p>
         <div className={styles.titleBlock}>
@@ -30,18 +30,18 @@ export function MustKnowCard({ rank, events }) {
         <section className={styles.textBlock}>
           <h4>What changed</h4>
           <ul>
-            {events.what_changed?.map((changed) => {
-              return <li>{changed}</li>;
-            })}
+            {events.what_changed?.map((changed) => (
+              <li key={changed}>{changed}</li>
+            ))}
           </ul>
         </section>
 
         <section className={styles.textBlock}>
           <h4>Why it matters</h4>
           <ul>
-            {events.why_it_matters?.map((matters) => {
-              return <li>{matters}</li>;
-            })}
+            {events.why_it_matters?.map((matters) => (
+              <li key={matters}>{matters}</li>
+            ))}
           </ul>
         </section>
 
@@ -49,9 +49,9 @@ export function MustKnowCard({ rank, events }) {
           <section className={`${styles.textBlock} ${styles.uncertainties}`}>
             <h4>Not yet known</h4>
             <ul>
-              {events.uncertainties?.map((uncertainty) => {
-                return <li>{uncertainty}</li>;
-              })}
+              {events.uncertainties?.map((uncertainty) => (
+                <li key={uncertainty}>{uncertainty}</li>
+              ))}
             </ul>
           </section>
         )}
@@ -60,13 +60,7 @@ export function MustKnowCard({ rank, events }) {
           headingId={`timeline-${rank}`}
           events={events.timeline}
         />
-        {/* <SourceLink
-          firstName={sources.firstName}
-          firstUrl={sources.firstUrl}
-          secondName={sources.secondName}
-          secondUrl={sources.secondUrl}
-        /> */}
       </div>
-    </article>
+    </Card>
   );
 }

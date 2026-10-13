@@ -1,17 +1,27 @@
 import styles from "./MobileActionBar.module.css";
+import { ShortNavigationBar } from "@kyralabs/m3e-react";
+import { useLocation } from "react-router";
 
+const ITEMS = [
+  { key: "home", label: "Home", icon: "home", href: "/" },
+  { key: "archive", label: "Archive", icon: "archive", href: "/archive" },
+];
+
+/**
+ * M3 navigation bar for compact windows (the top app bar shows the same links from 600dp).
+ * Items navigate client-side through react-router (React Aria RouterProvider in main.jsx); the
+ * current route is the selected destination.
+ */
 export const MobileActionBar = () => {
+  const { pathname } = useLocation();
+  const selectedKey = pathname === "/" ? "home" : pathname.startsWith("/archive") ? "archive" : null;
+
   return (
-    <nav className={styles.bar} aria-label="Mobile navigation">
-      <a href="/" className={styles.action} aria-current="page">
-        {/* icon */} Home
-      </a>
-      <a href="/archive" className={styles.action}>
-        {/* icon */} Archive
-      </a>
-      <a href="/search" className={styles.action}>
-        {/* icon */} Search
-      </a>
-    </nav>
+    <ShortNavigationBar
+      className={styles.bar}
+      aria-label="Mobile navigation"
+      items={ITEMS}
+      selectedKey={selectedKey}
+    />
   );
 };

@@ -1,4 +1,5 @@
 import styles from "./Pages.module.css";
+import { Button } from "@kyralabs/m3e-react";
 
 export function NotFoundPage() {
   return (
@@ -6,9 +7,9 @@ export function NotFoundPage() {
       <p className={styles.errorCode}>404</p>
       <h1>Page not found</h1>
       <p>The page may have moved, or the address may be incomplete.</p>
-      <a className={styles.homeLink} href="/">
+      <Button variant="filled" href="/">
         Back to home
-      </a>
+      </Button>
     </section>
   );
 }

@@ -1,6 +1,29 @@
-.entityPage { display: grid; gap: var(--space-2xl); }
-.related { display: grid; }
-.related > h2 { margin-block-end: var(--space-lg); }
-.notFound { display: grid; gap: var(--space-lg); }
-.errorCode { color: var(--color-accent); font-weight: 700; font-variant-numeric: tabular-nums; }
-.homeLink { width: fit-content; min-height: var(--control-height); display: inline-flex; align-items: center; color: var(--color-accent); font-weight: 700; white-space: nowrap; }
+.notFound {
+  display: grid;
+  gap: var(--m3e-sys-space-200);
+  justify-items: start;
+  padding-block: var(--m3e-sys-space-800);
+}
+
+.errorCode {
+  color: var(--m3e-sys-color-primary);
+  font-family: var(--m3e-sys-typescale-display-large-emphasized-font);
+  font-size: var(--m3e-sys-typescale-display-large-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-display-large-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-display-large-emphasized-line-height);
+  letter-spacing: var(--m3e-sys-typescale-display-large-emphasized-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.notFound h1 {
+  font-family: var(--m3e-sys-typescale-headline-large-emphasized-font);
+  font-size: var(--m3e-sys-typescale-headline-large-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-headline-large-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-headline-large-emphasized-line-height);
+  letter-spacing: var(--m3e-sys-typescale-headline-large-emphasized-tracking);
+}
+
+.notFound > p:not(.errorCode) {
+  margin-block-end: var(--m3e-sys-space-200);
+  color: var(--m3e-sys-color-on-surface-variant);
+}

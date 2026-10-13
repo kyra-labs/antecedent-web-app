@@ -1,0 +1,14 @@
+# Material Symbols (Rounded, D12) used by the app. `pnpm gen:icons` subsets these.
+home
+archive
+dark_mode
+light_mode
+search
+chevron_left
+chevron_right
+expand_more
+arrow_outward
+subdirectory_arrow_right
+error
+inbox
+schedule

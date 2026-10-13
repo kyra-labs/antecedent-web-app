@@ -2,6 +2,9 @@ import { THEME } from "../../constants/theme";
 import { useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
+// Same behaviour as before: dark by default, the choice kept in localStorage, and the switch
+// animated with a View Transition where supported. data-theme selects the generated scheme
+// (src/styles/generated/theme.css); index.html applies it before first paint.
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || THEME.DARK;
@@ -13,15 +16,15 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    // Check if the browser supports View Transitions
+    const next = (prev) => (prev === THEME.LIGHT ? THEME.DARK : THEME.LIGHT);
+
     if (!document.startViewTransition) {
-      setTheme((prev) => (prev === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
+      setTheme(next);
       return;
     }
 
-    // Smoothly animate the React state change!
     document.startViewTransition(() => {
-      setTheme((prev) => (prev === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
+      setTheme(next);
     });
   };
 

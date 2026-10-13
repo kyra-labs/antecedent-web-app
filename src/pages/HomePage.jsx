@@ -7,8 +7,6 @@ import { EmptyState } from "../components/common/EmptyState";
 export function HomePage() {
   const { data, error, isLoading, refetch } = useDigest();
 
-  console.log(data);
-
   let content;
 
   if (isLoading) content = <BlockLoader />;

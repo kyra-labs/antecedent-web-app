@@ -1,0 +1,16 @@
+# Netlify (current host): build the app with pnpm and publish dist/.
+# VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY stay in the Netlify environment, as before.
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  # Vite 8 and pnpm 12 need Node >= 22.12; pnpm 12.11.2 comes from package.json "packageManager".
+  NODE_VERSION = "24"
+
+# Single-page app: every route (/archive, /archive/:id, …) loads index.html, so deep links and
+# reloads work. Before, /archive returned Netlify's 404 page.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
