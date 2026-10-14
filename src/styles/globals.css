@@ -161,17 +161,22 @@
   }
 
   /*
-   * Motion: --m3e-sys-motion-* spring tokens, transform only (nothing is hidden, no layout
-   * shift), none of it under prefers-reduced-motion.
-   * - Each route's panes rise into place once (route change), staggered by short durations.
+   * Motion: --m3e-sys-motion-* spring tokens, transform and opacity only (no layout shift), none
+   * of it under prefers-reduced-motion.
+   * - Each route's panes rise (fast spatial spring) and fade in (fast effects spring, 149 ms)
+   *   once per route change, staggered by short durations. The content arrives from Supabase
+   *   after a loader; the short fade keeps it from cutting in hard, as the old entrance did.
    * - Interactive cards lift on hover (the archive list, the "Also worth knowing" rows; in their
    *   CSS modules); the library adds the elevation change and the ripple.
    */
   @media (prefers-reduced-motion: no-preference) {
     .pageReveal:not(.panes),
     .pageReveal.panes > * {
-      animation: app-page-reveal var(--m3e-sys-motion-spring-expressive-fast-spatial-duration)
-        var(--m3e-sys-motion-spring-expressive-fast-spatial-easing) both;
+      animation:
+        app-page-rise var(--m3e-sys-motion-spring-expressive-fast-spatial-duration)
+          var(--m3e-sys-motion-spring-expressive-fast-spatial-easing) both,
+        app-page-fade var(--m3e-sys-motion-spring-expressive-fast-effects-duration)
+          var(--m3e-sys-motion-spring-expressive-fast-effects-easing) both;
     }
 
     .pageReveal.panes > :nth-child(2) {
@@ -194,9 +199,15 @@
     }
   }
 
-  @keyframes app-page-reveal {
+  @keyframes app-page-rise {
     from {
       translate: 0 var(--m3e-sys-space-300);
+    }
+  }
+
+  @keyframes app-page-fade {
+    from {
+      opacity: 0;
     }
   }
 
