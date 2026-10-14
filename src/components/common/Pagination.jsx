@@ -3,7 +3,8 @@ import { Button } from "@kyralabs/m3e-react";
 
 /**
  * Prev / page numbers / Next. Prev and Next are real buttons, disabled at the ends (before, they
- * were links without href that could step to page 0 or past the last page).
+ * were links without href that could step to page 0 or past the last page). Their names start
+ * with the visible text (WCAG 2.5.3 label in name).
  */
 export function Pagination({ currentPage, totalPages, handlePageChange }) {
   if (totalPages < 1) return null;
@@ -15,7 +16,7 @@ export function Pagination({ currentPage, totalPages, handlePageChange }) {
       <Button
         variant="text"
         size="s"
-        aria-label="Previous page"
+        aria-label="Prev page"
         isDisabled={currentPage <= 1}
         onPress={() => handlePageChange(currentPage - 1)}
       >
