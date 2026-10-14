@@ -44,7 +44,7 @@ jobs:
             -H "apikey: $VITE_SUPABASE_ANON_KEY" -H "Authorization: Bearer $VITE_SUPABASE_ANON_KEY" | jq -r '.[0].id // empty')
           echo "LH_DIGEST_ID=$id" >> "$GITHUB_ENV"
           echo "detail page: ${id:-none}"
-      - name: Lighthouse accessibility = 100 (every route, mobile + desktop)
+      - name: Lighthouse accessibility = 100 and SEO = 100 (every route, mobile + desktop)
         run: pnpm lighthouse
       - name: Lighthouse scores
         if: always()

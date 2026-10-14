@@ -1,9 +1,12 @@
-/* Shared by ErrorState and EmptyState: a filled card with an icon, message and one action. */
+/* Shared by ErrorState and EmptyState: an icon, message and one action, as a pane (page level)
+   or a filled card inside the archive's pane. */
 .state {
   display: grid;
   gap: var(--m3e-sys-space-200);
   justify-items: start;
-  margin-block: var(--m3e-sys-space-300);
+}
+
+.card {
   padding: var(--m3e-sys-space-300);
 }
 
@@ -44,6 +47,9 @@
   .state {
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
+  }
+
+  .card {
     padding: var(--m3e-sys-space-400);
   }
 }

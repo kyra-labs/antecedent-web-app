@@ -12,7 +12,7 @@ export const DigestArchiveDetailPage = () => {
 
   let content;
 
-  if (isLoading) content = <BlockLoader />;
+  if (isLoading) content = <BlockLoader page />;
   else if (error) content = <ErrorState onRetry={refetch} />;
   else if (!data) content = <EmptyState />;
   else content = <DigestDetail digest={data} />;

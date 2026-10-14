@@ -130,20 +130,23 @@ export function DigestList() {
       </>
     );
 
+  // One pane: heading, search and filters, list.
   return (
-    <section className={`container pageReveal ${styles.archive}`}>
-      <header className={styles.heading}>
-        <div>
-          <p className={styles.kicker}>Reading archive</p>
-          <h1>Archive</h1>
-        </div>
-        <p>
-          Previous editions, kept close to the dates and stories that shaped
-          them.
-        </p>
-      </header>
+    <div className="container">
+      <section className={`pane pageReveal ${styles.archive}`}>
+        <header className={styles.heading}>
+          <div>
+            <p className={styles.kicker}>Reading archive</p>
+            <h1>Archive</h1>
+          </div>
+          <p>
+            Previous editions, kept close to the dates and stories that shaped
+            them.
+          </p>
+        </header>
 
-      {content}
-    </section>
+        {content}
+      </section>
+    </div>
   );
 }

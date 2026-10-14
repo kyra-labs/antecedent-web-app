@@ -1,7 +1,7 @@
 .card {
   display: grid;
   gap: var(--m3e-sys-space-300);
-  padding: var(--m3e-sys-space-300);
+  padding: var(--m3e-sys-space-200);
 }
 
 .cardHeader {
@@ -84,10 +84,11 @@
   list-style: disc;
 }
 
+/* One level above the card (surface-container-high inside a pane). */
 .uncertainties {
   padding: var(--m3e-sys-space-200);
   border-radius: var(--m3e-sys-shape-corner-medium);
-  background-color: var(--m3e-sys-color-surface-container-high);
+  background-color: var(--m3e-sys-color-surface-container-highest);
 }
 
 @media (width >= 600px) {

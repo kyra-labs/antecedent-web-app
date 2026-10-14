@@ -1,5 +1,5 @@
 /*
- * Antecedent on @kyralabs Material 3 Expressive (m3exp-web 1.0.0), Kyra red theme, same system as
+ * Antecedent on @kyralabs Material 3 Expressive (m3exp-web 1.1), Kyra red theme, same system as
  * kyralabs.dev.
  *
  * Tokens only: every colour, size, duration, easing, radius and type value is a var(--m3e-…)
@@ -81,8 +81,18 @@
 
 @layer app {
   :root {
-    /* Page margin: M3 compact 16dp, medium 24dp, wider from expanded. */
+    /*
+     * Pane hierarchy (as in Google's apps): the app bar, navigation bar and footer sit on the
+     * outer surface; each page section is a pane (.pane) on surface-container-low with large
+     * corners; cards inside a pane step up to surface-container-high.
+     * --_gutter: outer margin (M3 compact 16dp, medium 24dp, wider from expanded). Gutter + pane
+     * padding keep the reading measure close to the old single column.
+     */
     --_gutter: var(--m3e-sys-space-200);
+    --_pane-gap: var(--m3e-sys-space-150);
+    --_pane-padding-block: var(--m3e-sys-space-300);
+    --_pane-padding: var(--m3e-sys-space-200);
+    --_pane-shape: var(--m3e-sys-shape-corner-extra-large);
 
     scroll-padding-block-start: var(--m3e-comp-app-bar-small-container-height);
   }
@@ -123,6 +133,24 @@
     padding-inline: var(--_gutter);
   }
 
+  /* A pane: one page section on its own container surface. Cards inside step up a level. */
+  .pane {
+    --m3e-comp-elevated-card-container-color: var(--m3e-sys-color-surface-container-high);
+    --m3e-comp-filled-card-container-color: var(--m3e-sys-color-surface-container-high);
+    --m3e-comp-outlined-card-container-color: var(--m3e-sys-color-surface-container-high);
+
+    padding-block: var(--_pane-padding-block);
+    padding-inline: var(--_pane-padding);
+    border-radius: var(--_pane-shape);
+    background-color: var(--m3e-sys-color-surface-container-low);
+  }
+
+  /* Several panes in one page column (the digest: header, Must know, Also worth knowing). */
+  .panes {
+    display: grid;
+    gap: var(--_pane-gap);
+  }
+
   .srOnly {
     position: absolute;
     inline-size: var(--m3e-comp-divider-thickness); /* 1px: screen-reader-only box */
@@ -132,11 +160,31 @@
     white-space: nowrap;
   }
 
-  /* Each page fades up once on load (route change). */
+  /*
+   * Motion: --m3e-sys-motion-* spring tokens, transform and opacity only (no layout shift), none
+   * of it under prefers-reduced-motion.
+   * - Each route's panes rise (fast spatial spring) and fade in (fast effects spring, 149 ms)
+   *   once per route change, staggered by short durations. The content arrives from Supabase
+   *   after a loader; the short fade keeps it from cutting in hard, as the old entrance did.
+   * - Interactive cards lift on hover (the archive list, the "Also worth knowing" rows; in their
+   *   CSS modules); the library adds the elevation change and the ripple.
+   */
   @media (prefers-reduced-motion: no-preference) {
-    .pageReveal {
-      animation: app-page-reveal var(--m3e-sys-motion-duration-long2)
-        var(--m3e-sys-motion-easing-emphasized-decelerate) both;
+    .pageReveal:not(.panes),
+    .pageReveal.panes > * {
+      animation:
+        app-page-rise var(--m3e-sys-motion-spring-expressive-fast-spatial-duration)
+          var(--m3e-sys-motion-spring-expressive-fast-spatial-easing) both,
+        app-page-fade var(--m3e-sys-motion-spring-expressive-fast-effects-duration)
+          var(--m3e-sys-motion-spring-expressive-fast-effects-easing) both;
+    }
+
+    .pageReveal.panes > :nth-child(2) {
+      animation-delay: var(--m3e-sys-motion-duration-short1);
+    }
+
+    .pageReveal.panes > :nth-child(n + 3) {
+      animation-delay: var(--m3e-sys-motion-duration-short2);
     }
 
     /* Theme switch: the new scheme wipes in from the toggle's corner (View Transitions). */
@@ -151,10 +199,15 @@
     }
   }
 
-  @keyframes app-page-reveal {
+  @keyframes app-page-rise {
+    from {
+      translate: 0 var(--m3e-sys-space-300);
+    }
+  }
+
+  @keyframes app-page-fade {
     from {
       opacity: 0;
-      translate: 0 var(--m3e-sys-space-100);
     }
   }
 
@@ -171,24 +224,30 @@
   @media (width >= 600px) {
     :root {
       --_gutter: var(--m3e-sys-space-300);
+      --_pane-gap: var(--m3e-sys-space-200);
+      --_pane-padding-block: var(--m3e-sys-space-500);
+      --_pane-padding: var(--m3e-sys-space-400);
     }
   }
 
   @media (width >= 840px) {
     :root {
-      --_gutter: 8vw;
+      --_pane-padding-block: var(--m3e-sys-space-600);
+      --_pane-padding: 5vw;
+      --_pane-shape: var(--m3e-sys-shape-corner-extra-large-increased);
     }
   }
 
   @media (width >= 1200px) {
     :root {
-      --_gutter: 15vw;
+      --_gutter: 10vw;
     }
   }
 
   @media (width >= 1600px) {
     :root {
-      --_gutter: 22vw;
+      --_gutter: 16vw;
+      --_pane-padding: 6vw;
     }
   }
 }

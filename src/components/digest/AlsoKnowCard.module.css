@@ -91,3 +91,15 @@
     padding-inline-start: calc(var(--m3e-sys-space-300) + var(--m3e-sys-space-500));
   }
 }
+
+/* The row is the card's one action: the card lifts while it's hovered (transform only). */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .card {
+    transition: translate var(--m3e-sys-motion-spring-default-spatial-duration)
+      var(--m3e-sys-motion-spring-default-spatial-easing);
+  }
+
+  .card:has(.row:hover) {
+    translate: 0 calc(var(--m3e-sys-space-50) * -1);
+  }
+}

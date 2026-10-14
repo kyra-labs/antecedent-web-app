@@ -3,7 +3,7 @@ import { MustKnowCard } from "./MustKnowCard";
 
 export function MustKnowSection({ stories }) {
   return (
-    <section className={styles.section} aria-labelledby="must-know-heading">
+    <section className={`pane ${styles.section}`} aria-labelledby="must-know-heading">
       <header className={styles.heading}>
         <p className={styles.kicker}>01</p>
         <div>

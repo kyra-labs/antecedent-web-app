@@ -3,7 +3,7 @@ import { AlsoKnowCard } from "./AlsoKnowCard";
 
 export function AlsoKnowSection({ stories }) {
   return (
-    <section className={styles.section} aria-labelledby="also-know-heading">
+    <section className={`pane ${styles.section}`} aria-labelledby="also-know-heading">
       <header className={styles.heading}>
         <p className={styles.kicker}>02</p>
         <div>

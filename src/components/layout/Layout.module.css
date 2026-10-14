@@ -9,9 +9,10 @@
   );
 }
 
+/* Panes start just under the app bar; the footer sits on the outer surface below them. */
 .main {
   inline-size: 100%;
-  padding-block: var(--m3e-sys-space-500) var(--m3e-sys-space-800);
+  padding-block: var(--_pane-gap) var(--m3e-sys-space-500);
 }
 
 @media (width >= 600px) {
@@ -20,6 +21,6 @@
   }
 
   .main {
-    padding-block: var(--m3e-sys-space-600) var(--m3e-sys-space-900);
+    padding-block-end: var(--m3e-sys-space-600);
   }
 }
