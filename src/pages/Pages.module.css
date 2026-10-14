@@ -2,7 +2,6 @@
   display: grid;
   gap: var(--m3e-sys-space-200);
   justify-items: start;
-  padding-block: var(--m3e-sys-space-800);
 }
 
 .errorCode {

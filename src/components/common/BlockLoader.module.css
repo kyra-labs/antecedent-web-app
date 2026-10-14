@@ -3,3 +3,7 @@
   min-block-size: 50svh;
   place-items: center;
 }
+
+.page {
+  min-block-size: calc(100svh - var(--m3e-comp-app-bar-small-container-height));
+}

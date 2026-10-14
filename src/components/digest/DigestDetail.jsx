@@ -1,4 +1,3 @@
-import styles from "./DigestDetail.module.css";
 import { DigestHeader } from "./DigestHeader";
 import { MustKnowSection } from "./MustKnowSection";
 import { AlsoKnowSection } from "./AlsoKnowSection";
@@ -13,7 +12,8 @@ export function DigestDetail({ digest }) {
   );
 
   return (
-    <article className={`container pageReveal ${styles.detail}`}>
+    // Three panes: the header and intro, "Must know", "Also worth knowing".
+    <article className="container panes pageReveal">
       <DigestHeader
         title={digest.title}
         readingTime={`${digest.reading_minutes} minutes`}
