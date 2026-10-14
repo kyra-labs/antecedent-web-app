@@ -8,7 +8,7 @@ React 19 + Vite 8 single-page app: today's tech digest with historical context. 
 
 ## Commands
 
-pnpm 12.11.2 (`packageManager`), Node ≥ 22.12 (`.nvmrc` 24). Needs `.env.local` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (see `.env.example`); `supabaseClient.js` throws without them.
+pnpm 12.11.2 (`packageManager`), Node ≥ 22.12; `.nvmrc` is pinned to **24.21.0** (2026-10-15: on Node 24.22.0, Cloudflare Workers Builds' Corepack setup of pnpm 12 fails with "Cannot find module …/corepack/v1/pnpm/12.11.2/bin/pnpm.cjs" before install; 24.21.0 is the last version that built. Only bump it after a Workers build passes on the new version). Needs `.env.local` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (see `.env.example`); `supabaseClient.js` throws without them.
 
 - `pnpm dev`, `pnpm build` → `dist/`. Both run `pnpm gen` first: the theme from `src/brand.mjs` and the icon subset from `src/icons.txt`, into `src/styles/generated/` (git-ignored).
 - `pnpm lint` (ESLint), `pnpm lint:css` (stylelint, tokens only), `pnpm lighthouse` (accessibility and SEO must be 100, performance warns below 85; set `LH_DIGEST_ID` to also audit a detail page, `LH_PORT` to move the preview off 4173).
