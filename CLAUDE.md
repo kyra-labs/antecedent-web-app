@@ -4,7 +4,7 @@ Standing instructions for Claude Code sessions in this repo (antecedent.kyralabs
 
 ## What this is
 
-React 19 + Vite 8 single-page app: today's tech digest with historical context. Data from Supabase (`src/api/`). Routes: `/` (latest digest), `/archive`, `/archive/:id`, `*` (404). Built on the Kyra Labs Material 3 Expressive library **@kyralabs/m3exp-web 1.1** (`@kyralabs/m3e-tokens`, `m3e-css`, `m3e-react`, `m3e-elements` from npm, `^1.1.0`). Library repo: kyra-labs/m3exp-web. Its `DECISIONS.md` and `CLAUDE.md` define the design rules.
+React 19 + Vite 8 single-page app: today's tech digest with historical context. Data from Supabase (`src/api/`). Routes: `/` (latest digest), `/archive`, `/archive/:id`, `*` (404). Built on the Kyra Labs Material 3 Expressive library **@kyralabs/m3exp-web 1.7** (`@kyralabs/m3e-tokens`, `m3e-css`, `m3e-react`, `m3e-elements` from npm, `^1.7.0`). Library repo: kyra-labs/m3exp-web. Its `DECISIONS.md` and `CLAUDE.md` define the design rules.
 
 ## Commands
 
@@ -47,6 +47,7 @@ pnpm 12.11.2 (`packageManager`), Node ≥ 22.12; `.nvmrc` is pinned to **24.21.0
   - production deep links returned 404 (no SPA fallback).
   Lighthouse accessibility went from 93 to 100 on every route.
 - **2026-10-15, "look like Google's apps"** (branch `m5/google-feel`): @kyralabs 1.1.0, palette C, press ripple on plain-HTML components, pane layout, headline section titles, spring entrance and card hover lift, SEO 100 (meta description, robots.txt) asserted in CI, the page-level loader fills the window so the footer no longer jumps when the digest arrives (CLS). The same change went to kyralabs.dev, Spenzia and the portfolio.
+- **2026-10-19, @kyralabs 1.7.0**: the upgrade needed no source change. The theme switch's hint is an M3 plain tooltip (`<m3e-tooltip>`, `src/lazy/tooltip.js`) instead of `title`, fetched on the button's first hover, focus or touch. Each "Historical thread" region is named with its story's title (axe `landmark-unique`: three regions shared one name). **Performance budget, measured:** the library text field (archive search) and filter chips (date filter) were tried and reverted. m3e-react ships as one module, so every component used lands in the main chunk; their CSS (text field 5.2 KB + filter chip 3.6 KB gzip) pushed the main stylesheet past a TCP slow-start round trip (Lighthouse mobile FCP/SI +150 ms on every route; the threshold is between ~40.3 and 43.4 KB gzip), and loading it later put a request in front of the archive's LCP (+150 ms). Keep the main CSS under ~40 KB gzip, and check new components with an interleaved Lighthouse A/B.
 - Sister sites converted the same way: kyralabs.dev (kyra-labs/website), spenzia.kyralabs.dev (kyra-labs/spenzia-website), yamtee.dev (YamTee/portfolio).
 
 ## Known gaps / follow-ups
@@ -54,4 +55,4 @@ pnpm 12.11.2 (`packageManager`), Node ≥ 22.12; `.nvmrc` is pinned to **24.21.0
 - Legacy components not reachable from any route (`components/archive`, `article`, `entity`, `digest/{CategoryFilter,DigestFeed,SourceLink,StoryCard}`, `common/LoadingSpinner`, the unrouted pages) still use pre-M3 CSS and are excluded from stylelint. Convert them when the article and entity routes come back.
 - The search helper says "Search by headline or date", but search matches headlines only (unchanged behaviour).
 - `/no-such-page` answers HTTP 200 with the in-app 404 view (soft 404) because of the SPA fallback on every host.
-- Library gaps hit here: no text field or filter-chip component; the top app bar title must be a heading (no plain-title option); nav items always use `aria-current="page"`.
+- Library gaps hit here: the top app bar title must be a heading (no plain-title option); nav items always use `aria-current="page"`. Text field and filter chips exist since 1.6 but don't fit the performance budget yet (see History, 2026-10-19): route-level code splitting here, or per-component entries in m3e-react, would unlock them.

@@ -15,10 +15,10 @@
     "lighthouse": "lhci autorun && lhci autorun --collect.settings.preset=desktop --upload.outputDir=./.lighthouseci/reports-desktop"
   },
   "dependencies": {
-    "@kyralabs/m3e-css": "^1.1.0",
-    "@kyralabs/m3e-elements": "^1.1.0",
-    "@kyralabs/m3e-react": "^1.1.0",
-    "@kyralabs/m3e-tokens": "^1.1.0",
+    "@kyralabs/m3e-css": "^1.7.0",
+    "@kyralabs/m3e-elements": "^1.7.0",
+    "@kyralabs/m3e-react": "^1.7.0",
+    "@kyralabs/m3e-tokens": "^1.7.0",
     "@supabase/supabase-js": "^2.112.4",
     "react": "^19.2.8",
     "react-aria": "3.53.1",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@eslint/js": "^10.0.1",
-    "@kyralabs/m3e-icons": "^1.1.0",
+    "@kyralabs/m3e-icons": "^1.7.0",
     "@lhci/cli": "0.15.1",
     "@rolldown/plugin-babel": "^0.2.3",
     "@types/react": "^19.2.18",
