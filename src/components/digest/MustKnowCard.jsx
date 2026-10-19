@@ -1,15 +1,18 @@
 import styles from "./MustKnowCard.module.css";
+import { useId } from "react";
 import { Card } from "@kyralabs/m3e-react";
 import { Badge } from "../common/Badge";
 import { HistoricalContextTimeline } from "./HistoricalContextTimeline";
 
 export function MustKnowCard({ rank, events }) {
+  const titleId = useId();
+
   return (
     <Card as="article" variant="outlined" className={styles.card}>
       <header className={styles.cardHeader}>
         <p className={styles.rank}>{String(rank).padStart(2, "0")}</p>
         <div className={styles.titleBlock}>
-          <h3>{events.title}</h3>
+          <h3 id={titleId}>{events.title}</h3>
           <div className={styles.meta}>
             <Badge tone="category">{events.category}</Badge>
             <span className={styles.score}>
@@ -58,6 +61,7 @@ export function MustKnowCard({ rank, events }) {
 
         <HistoricalContextTimeline
           headingId={`timeline-${rank}`}
+          storyTitleId={titleId}
           events={events.timeline}
         />
       </div>

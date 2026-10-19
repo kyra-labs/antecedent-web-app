@@ -1,8 +1,13 @@
 import styles from "./HistoricalContextTimeline.module.css";
 
-export function HistoricalContextTimeline({ headingId, events }) {
+// Every story has a "Historical thread"; the story's title joins the region's name so each region
+// is unique ("Historical thread, <title>"), as landmarks must be.
+export function HistoricalContextTimeline({ headingId, storyTitleId, events }) {
   return (
-    <section className={styles.timeline} aria-labelledby={headingId}>
+    <section
+      className={styles.timeline}
+      aria-labelledby={storyTitleId ? `${headingId} ${storyTitleId}` : headingId}
+    >
       <header className={styles.heading}>
         <h4 id={headingId}>Historical thread</h4>
         <p>Earlier events that make this update legible.</p>
