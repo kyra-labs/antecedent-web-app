@@ -11,13 +11,26 @@
   align-items: start;
 }
 
+/* The rank on a Material clover shape. */
 .rank {
-  color: var(--m3e-sys-color-primary);
-  font-family: var(--m3e-sys-typescale-headline-medium-emphasized-font);
-  font-size: var(--m3e-sys-typescale-headline-medium-emphasized-size);
-  font-weight: var(--m3e-sys-typescale-headline-medium-emphasized-weight);
-  line-height: var(--m3e-sys-typescale-headline-medium-emphasized-line-height);
+  display: grid;
+  inline-size: var(--m3e-sys-space-600);
+  place-items: center;
+  color: var(--m3e-sys-color-on-primary);
+  font-family: var(--m3e-sys-typescale-title-medium-emphasized-font);
+  font-size: var(--m3e-sys-typescale-title-medium-emphasized-size);
+  font-weight: var(--m3e-sys-typescale-title-medium-emphasized-weight);
+  line-height: var(--m3e-sys-typescale-title-medium-emphasized-line-height);
   font-variant-numeric: tabular-nums;
+}
+
+.rank > * {
+  grid-area: 1 / 1;
+}
+
+.rankShape {
+  inline-size: 100%;
+  color: var(--m3e-sys-color-primary);
 }
 
 .titleBlock {
@@ -84,11 +97,16 @@
   list-style: disc;
 }
 
-/* One level above the card (surface-container-high inside a pane). */
+/* Open questions stand apart from the facts: a tonal secondary-container block. */
 .uncertainties {
-  padding: var(--m3e-sys-space-200);
-  border-radius: var(--m3e-sys-shape-corner-medium);
-  background-color: var(--m3e-sys-color-surface-container-highest);
+  padding: var(--m3e-sys-space-200) var(--m3e-sys-space-300);
+  border-radius: var(--m3e-sys-shape-corner-large);
+  background-color: var(--m3e-sys-color-secondary-container);
+  color: var(--m3e-sys-color-on-secondary-container);
+}
+
+.uncertainties h4 {
+  color: inherit;
 }
 
 @media (width >= 600px) {
@@ -97,6 +115,6 @@
   }
 
   .content {
-    padding-inline-start: calc(var(--m3e-sys-space-500) + var(--m3e-sys-space-200));
+    padding-inline-start: calc(var(--m3e-sys-space-600) + var(--m3e-sys-space-200));
   }
 }

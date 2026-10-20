@@ -3,14 +3,18 @@ import { useId } from "react";
 import { Card } from "@kyralabs/m3e-react";
 import { Badge } from "../common/Badge";
 import { HistoricalContextTimeline } from "./HistoricalContextTimeline";
+import { Shape } from "../common/Shape";
 
 export function MustKnowCard({ rank, events }) {
   const titleId = useId();
 
   return (
-    <Card as="article" variant="outlined" className={styles.card}>
+    <Card as="article" className={styles.card}>
       <header className={styles.cardHeader}>
-        <p className={styles.rank}>{String(rank).padStart(2, "0")}</p>
+        <p className={styles.rank}>
+          <Shape name="Clover4Leaf" className={styles.rankShape} />
+          <span>{String(rank).padStart(2, "0")}</span>
+        </p>
         <div className={styles.titleBlock}>
           <h3 id={titleId}>{events.title}</h3>
           <div className={styles.meta}>

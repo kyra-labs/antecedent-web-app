@@ -2,7 +2,17 @@
   position: sticky;
   z-index: 2;
   inset-block-start: 0;
-  padding-inline: max(0%, calc(var(--_gutter) - var(--m3e-comp-top-app-bar-horizontal-padding)));
+
+  /* Lines up with the page column (.container, capped at the large window width: half of it is
+     the medium width, 600dp). */
+  padding-inline: max(
+    0%,
+    calc(var(--_gutter) - var(--m3e-comp-top-app-bar-horizontal-padding)),
+    calc(
+      50% - var(--m3e-sys-window-width-medium) + var(--_gutter) -
+        var(--m3e-comp-top-app-bar-horizontal-padding)
+    )
+  );
 }
 
 /* The bar takes its on-scroll colour once the page scrolls (CSS scroll-driven animation). */

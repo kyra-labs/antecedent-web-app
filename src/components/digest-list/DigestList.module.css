@@ -9,7 +9,7 @@
 }
 
 .kicker {
-  color: var(--m3e-sys-color-primary);
+  color: var(--m3e-sys-color-on-surface-variant);
   font-family: var(--m3e-sys-typescale-label-large-emphasized-font);
   font-size: var(--m3e-sys-typescale-label-large-emphasized-size);
   font-weight: var(--m3e-sys-typescale-label-large-emphasized-weight);
@@ -39,9 +39,22 @@
   gap: var(--m3e-sys-space-300);
 }
 
+/* M3 Expressive segmented list: rows 2dp apart, large corners on the outer rows only. */
 .list {
+  --m3e-comp-filled-card-container-shape: var(--m3e-sys-shape-corner-extra-small);
+
   display: grid;
-  gap: var(--m3e-sys-space-150);
+  gap: var(--m3e-sys-space-25);
+}
+
+.list > :first-child {
+  border-start-start-radius: var(--m3e-sys-shape-corner-large-increased);
+  border-start-end-radius: var(--m3e-sys-shape-corner-large-increased);
+}
+
+.list > :last-child {
+  border-end-start-radius: var(--m3e-sys-shape-corner-large-increased);
+  border-end-end-radius: var(--m3e-sys-shape-corner-large-increased);
 }
 
 @media (width >= 840px) {

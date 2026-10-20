@@ -1,3 +1,8 @@
+.top {
+  display: grid;
+  gap: var(--_pane-gap);
+}
+
 .header {
   display: grid;
   gap: var(--m3e-sys-space-300);
@@ -8,7 +13,7 @@
   flex-wrap: wrap;
   gap: var(--m3e-sys-space-100) var(--m3e-sys-space-200);
   align-items: center;
-  color: var(--m3e-sys-color-primary);
+  color: var(--m3e-sys-color-on-surface-variant);
   font-family: var(--m3e-sys-typescale-label-large-emphasized-font);
   font-size: var(--m3e-sys-typescale-label-large-emphasized-size);
   font-weight: var(--m3e-sys-typescale-label-large-emphasized-weight);
@@ -25,7 +30,7 @@
 .titleRow {
   display: grid;
   gap: var(--m3e-sys-space-200);
-  place-items: end start;
+  justify-items: start;
 }
 
 .titleRow h1 {
@@ -64,9 +69,47 @@
   letter-spacing: var(--m3e-sys-typescale-title-large-tracking);
 }
 
+/* The art pane: Material shapes on primary-container, from expanded windows only. */
+.art {
+  position: relative;
+  display: none;
+  overflow: clip;
+  background-color: var(--m3e-sys-color-primary-container);
+}
+
+.art svg {
+  position: absolute;
+  block-size: auto;
+}
+
+.shapeA {
+  inset-block-start: -10%;
+  inset-inline-end: -20%;
+  inline-size: 90%;
+  color: var(--m3e-sys-color-primary-fixed);
+}
+
+.shapeB {
+  inset-block-end: 8%;
+  inset-inline-start: 8%;
+  inline-size: 40%;
+  color: var(--m3e-sys-color-tertiary-fixed);
+}
+
+.shapeC {
+  inset-block-end: 12%;
+  inset-inline-end: 10%;
+  inline-size: 22%;
+  color: var(--m3e-sys-color-on-primary-fixed-variant);
+}
+
 @media (width >= 840px) {
-  .titleRow {
-    grid-template-columns: minmax(0, 1fr) auto;
+  .top {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .art {
+    display: block;
   }
 
   .titleRow h1 {

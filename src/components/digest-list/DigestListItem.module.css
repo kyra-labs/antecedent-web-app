@@ -3,7 +3,7 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: var(--m3e-sys-space-50) var(--m3e-sys-space-200);
   align-items: center;
-  padding: var(--m3e-sys-space-200) var(--m3e-sys-space-300);
+  padding: var(--m3e-sys-space-200);
 }
 
 /* The title link (CardAction) covers the card; the library's action has no outline, so the card
@@ -13,13 +13,16 @@
   outline-offset: var(--m3e-sys-state-focus-indicator-outer-offset);
 }
 
-.index,
-.arrow {
-  color: var(--m3e-sys-color-primary);
-}
-
+/* Leading icon in a tonal circle (M3 list). */
 .index {
+  display: grid;
   grid-row: 1 / span 3;
+  inline-size: var(--m3e-sys-space-500);
+  block-size: var(--m3e-sys-space-500);
+  place-content: center;
+  border-radius: var(--m3e-sys-shape-corner-full);
+  background-color: var(--m3e-sys-color-secondary-container);
+  color: var(--m3e-sys-color-on-secondary-container);
 }
 
 .title {
@@ -57,9 +60,14 @@
   grid-column: 3;
   grid-row: 1;
   justify-self: end;
+  color: var(--m3e-sys-color-primary);
 }
 
 @media (width >= 600px) {
+  .item {
+    padding-inline: var(--m3e-sys-space-300);
+  }
+
   .index {
     grid-row: 1 / span 2;
   }
@@ -70,8 +78,8 @@
   }
 }
 
-/* Interactive card: lifts on hover (the library adds elevation and the ripple). Items rise in
-   with a short stagger when a page of results appears. Transform only. */
+/* Rows of a segmented list (no lift; the library adds the state layer and the ripple). Items rise
+   in with a short stagger when a page of results appears. Transform only. */
 @media (prefers-reduced-motion: no-preference) {
   .item {
     animation: list-item-enter var(--m3e-sys-motion-spring-expressive-fast-spatial-duration)
@@ -88,20 +96,6 @@
 
   .item:nth-child(n + 4) {
     animation-delay: var(--m3e-sys-motion-duration-short3);
-  }
-
-  @media (hover: hover) {
-    .item {
-      transition:
-        box-shadow var(--m3e-comp-elevation-outgoing-duration-hovered)
-          var(--m3e-comp-elevation-outgoing-easing),
-        translate var(--m3e-sys-motion-spring-default-spatial-duration)
-          var(--m3e-sys-motion-spring-default-spatial-easing);
-    }
-
-    .item:hover {
-      translate: 0 calc(var(--m3e-sys-space-50) * -1);
-    }
   }
 }
 

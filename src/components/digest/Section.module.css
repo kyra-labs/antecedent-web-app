@@ -11,20 +11,28 @@
   align-items: start;
 }
 
-/* Decorative section number: secondary-container (amber tertiary is kept for meaning, not decoration). */
+/* Decorative section number on a Material cookie shape (secondary-container: amber tertiary is
+   kept for meaning, not decoration). */
 .kicker {
   display: grid;
   inline-size: var(--m3e-sys-space-700);
   block-size: var(--m3e-sys-space-700);
   place-items: center;
-  border-radius: var(--m3e-sys-shape-corner-large);
-  background-color: var(--m3e-sys-color-secondary-container);
   color: var(--m3e-sys-color-on-secondary-container);
   font-family: var(--m3e-sys-typescale-title-large-emphasized-font);
   font-size: var(--m3e-sys-typescale-title-large-emphasized-size);
   font-weight: var(--m3e-sys-typescale-title-large-emphasized-weight);
   line-height: var(--m3e-sys-typescale-title-large-emphasized-line-height);
   font-variant-numeric: tabular-nums;
+}
+
+.kicker > * {
+  grid-area: 1 / 1;
+}
+
+.kickerShape {
+  inline-size: 100%;
+  color: var(--m3e-sys-color-secondary-container);
 }
 
 .heading h2 {
@@ -42,16 +50,33 @@
 
 .cards {
   display: grid;
-  gap: var(--m3e-sys-space-300);
+  gap: var(--_pane-gap);
 }
 
-/* Section titles use the headline typescale (display is for the page title). */
+/* M3 Expressive segmented list: rows 2dp apart, large corners on the outer rows only. */
+.segmented {
+  --m3e-comp-filled-card-container-shape: var(--m3e-sys-shape-corner-extra-small);
+
+  gap: var(--m3e-sys-space-25);
+}
+
+.segmented > :first-child {
+  border-start-start-radius: var(--m3e-sys-shape-corner-large-increased);
+  border-start-end-radius: var(--m3e-sys-shape-corner-large-increased);
+}
+
+.segmented > :last-child {
+  border-end-start-radius: var(--m3e-sys-shape-corner-large-increased);
+  border-end-end-radius: var(--m3e-sys-shape-corner-large-increased);
+}
+
+/* Section titles: display small from expanded (display large is the page title). */
 @media (width >= 840px) {
   .heading h2 {
-    font-family: var(--m3e-sys-typescale-headline-large-emphasized-font);
-    font-size: var(--m3e-sys-typescale-headline-large-emphasized-size);
-    font-weight: var(--m3e-sys-typescale-headline-large-emphasized-weight);
-    line-height: var(--m3e-sys-typescale-headline-large-emphasized-line-height);
-    letter-spacing: var(--m3e-sys-typescale-headline-large-emphasized-tracking);
+    font-family: var(--m3e-sys-typescale-display-small-emphasized-font);
+    font-size: var(--m3e-sys-typescale-display-small-emphasized-size);
+    font-weight: var(--m3e-sys-typescale-display-small-emphasized-weight);
+    line-height: var(--m3e-sys-typescale-display-small-emphasized-line-height);
+    letter-spacing: var(--m3e-sys-typescale-display-small-emphasized-tracking);
   }
 }

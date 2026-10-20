@@ -1,6 +1,6 @@
 /*
- * Antecedent on @kyralabs Material 3 Expressive (m3exp-web 1.1), Kyra red theme, same system as
- * kyralabs.dev.
+ * Antecedent on @kyralabs Material 3 Expressive (m3exp-web 1.7), Kyra red theme, same system as
+ * kyralabs.dev (measured against m3.material.io: panes 8dp apart, 56dp padding, tonal cards).
  *
  * Tokens only: every colour, size, duration, easing, radius and type value is a var(--m3e-…)
  * token; stylelint.config.js enforces the library's own rules on every CSS file in src/.
@@ -84,12 +84,12 @@
     /*
      * Pane hierarchy (as in Google's apps): the app bar, navigation bar and footer sit on the
      * outer surface; each page section is a pane (.pane) on surface-container-low with large
-     * corners; cards inside a pane step up to surface-container-high.
-     * --_gutter: outer margin (M3 compact 16dp, medium 24dp, wider from expanded). Gutter + pane
-     * padding keep the reading measure close to the old single column.
+     * corners, 8dp apart; cards inside a pane are tonal (filled) on surface-container-high.
+     * --_gutter: outer margin (M3 compact 16dp, medium 24dp). The column is capped at the large
+     * window width, which keeps the reading measure of the old single column.
      */
     --_gutter: var(--m3e-sys-space-200);
-    --_pane-gap: var(--m3e-sys-space-150);
+    --_pane-gap: var(--m3e-sys-space-100);
     --_pane-padding-block: var(--m3e-sys-space-300);
     --_pane-padding: var(--m3e-sys-space-200);
     --_pane-shape: var(--m3e-sys-shape-corner-extra-large);
@@ -130,14 +130,15 @@
 
   /* Page column. */
   .container {
+    inline-size: 100%;
+    max-inline-size: var(--m3e-sys-window-width-large);
+    margin-inline: auto;
     padding-inline: var(--_gutter);
   }
 
   /* A pane: one page section on its own container surface. Cards inside step up a level. */
   .pane {
-    --m3e-comp-elevated-card-container-color: var(--m3e-sys-color-surface-container-high);
     --m3e-comp-filled-card-container-color: var(--m3e-sys-color-surface-container-high);
-    --m3e-comp-outlined-card-container-color: var(--m3e-sys-color-surface-container-high);
 
     padding-block: var(--_pane-padding-block);
     padding-inline: var(--_pane-padding);
@@ -166,8 +167,8 @@
    * - Each route's panes rise (fast spatial spring) and fade in (fast effects spring, 149 ms)
    *   once per route change, staggered by short durations. The content arrives from Supabase
    *   after a loader; the short fade keeps it from cutting in hard, as the old entrance did.
-   * - Interactive cards lift on hover (the archive list, the "Also worth knowing" rows; in their
-   *   CSS modules); the library adds the elevation change and the ripple.
+   * - Lists (the archive, "Also worth knowing") are M3 segmented lists: no lift, the library adds
+   *   the state layer and the ripple.
    */
   @media (prefers-reduced-motion: no-preference) {
     .pageReveal:not(.panes),
@@ -232,22 +233,9 @@
 
   @media (width >= 840px) {
     :root {
-      --_pane-padding-block: var(--m3e-sys-space-600);
-      --_pane-padding: 5vw;
+      --_pane-padding-block: var(--m3e-sys-space-700);
+      --_pane-padding: var(--m3e-sys-space-700);
       --_pane-shape: var(--m3e-sys-shape-corner-extra-large-increased);
-    }
-  }
-
-  @media (width >= 1200px) {
-    :root {
-      --_gutter: 10vw;
-    }
-  }
-
-  @media (width >= 1600px) {
-    :root {
-      --_gutter: 16vw;
-      --_pane-padding: 6vw;
     }
   }
 }
