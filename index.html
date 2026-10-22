@@ -15,6 +15,23 @@
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
     </script>
+    <!-- Site name for Google Search (static, so it doesn't wait for the app's JavaScript). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://antecedent.kyralabs.dev/#website",
+        "name": "Antecedent",
+        "url": "https://antecedent.kyralabs.dev/",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://kyralabs.dev/#organization",
+          "name": "Kyra Labs",
+          "url": "https://kyralabs.dev/"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

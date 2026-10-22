@@ -1,0 +1,8 @@
+# noindex on the Worker's own hosts only, never on antecedent.kyralabs.dev: workers.dev (production,
+# previews, versions) and the preview aliases on antecedent-preview.kyralabs.dev. Keep these rules
+# first: Netlify's parser only knows path rules and would attach noindex to any path rule above them.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+
+https://:alias.antecedent-preview.kyralabs.dev/*
+  X-Robots-Tag: noindex
